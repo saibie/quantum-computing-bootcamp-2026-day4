@@ -1,0 +1,157 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{kotex}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\definecolor{qcDarkBlue}{HTML}{1A365D}
+\definecolor{qcAccentBlue}{HTML}{2B6CB0}
+\definecolor{qcLightBlue}{HTML}{EBF8FF}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=qcDarkBlue,
+    urlcolor=qcAccentBlue,
+    citecolor=qcDarkBlue
+}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\braket}[2]{\langle#1|#2\rangle}
+\newcommand{\ketbra}[2]{|#1\rangle\langle#2|}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{qcAccentBlue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{teal},
+    backgroundcolor=\color{qcLightBlue!30},
+    frame=single,
+    rulecolor=\color{gray!30},
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{정의}[section]
+\newtheorem{theorem}{정리}[section]
+\newtheorem{example}{예제}[section]
+
+\newtcolorbox{notebox}[1]{
+    colback=qcLightBlue!50,
+    colframe=qcDarkBlue,
+    fonttitle=\bfseries\color{white},
+    title=#1,
+    arc=2mm,
+    left=8pt, right=8pt, top=8pt, bottom=8pt
+}
+
+\newtcolorbox{cautionbox}[1]{
+    colback=red!5,
+    colframe=red!75!black,
+    fonttitle=\bfseries\color{white},
+    title=#1,
+    arc=2mm,
+    left=8pt, right=8pt, top=8pt, bottom=8pt
+}
+
+\newtcolorbox{worksheetbox}[1]{
+    colback=blue!3,
+    colframe=qcAccentBlue,
+    fonttitle=\bfseries\color{white},
+    title=#1,
+    arc=2mm,
+    left=8pt, right=8pt, top=8pt, bottom=8pt
+}
+
+\title{\textbf{\Huge ‘양자컴퓨팅 이론\&실습 4주 부트캠프’}\\[0.4em]
+\LARGE Day 4 공식 강의노트: QubitSquare 산업용 웹 양자 플랫폼 종합 실습\\[0.2em]
+\large 노코드 웹 GUI 플랫폼을 통한 양자 회로 조립, 클라우드 QPlayer 실행 및 Compare 분석}
+\author{\textbf{강사}: 서상협 ((주)큐렌스 / QRens)}
+\date{2026년 12월 04일}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+본 강의노트는 4주 부트캠프의 최종일(Day 4) 공식 교재입니다. 1~3일차에서 체득한 선형대수학적 원리와 양자 알고리즘을 바탕으로, 코딩 장벽 없이 산업 도메인 문제를 양자 회로로 전환하고 클라우드 백엔드에서 실행·분석할 수 있도록 설계된 차세대 웹 기반 양자 플랫폼 \textbf{QubitSquare}의 활용법을 정립합니다. 플랫폼의 핵심 아키텍처(Lab $\to$ Design $\to$ Run $\to$ Result $\to$ Compare $\to$ Insight), Design Workspace의 5대 Puzzle Pieces와 3대 편집 규칙, QPlayer Compute Engine 서버 큐 파이프라인과 자동 전체 측정 규칙, 그리고 Compare 다중 런(Run) 비교 분석 및 비즈니스 최적화 템플릿(Max-Cut, TSP) 활용법을 체계적으로 다룹니다.
+\end{abstract}
+
+\vspace{0.3cm}
+
+\begin{notebox}{Day 4 학습의 3대 핵심 기둥}
+\begin{enumerate}
+    \item \textbf{[도메인 전문가를 위한 노코드(No-Code) 양자 플랫폼]}: 화학, 금융, 물류 등 도메인 전문가들이 복잡한 Python 가상환경이나 SDK 문법의 장벽 없이 웹 브라우저에서 드래그 앤 드롭으로 알고리즘을 직관적으로 설계하고 시뮬레이션합니다.
+    \item \textbf{[서버 기반 클라우드 실행 파이프라인]}: 회로 조립 후 QPlayer 백엔드 Compute Engine으로 작업을 제출(Submit)하고, 서버 작업 큐(Queue) 상태를 모니터링하며 자동 전체 측정(Auto Full Measurement) 결과를 수신합니다.
+    \item \textbf{[Compare 다중 런 비교와 산업 문제 해결]}: 100샷과 1,000샷의 측정 오차(Shot Noise) 수렴을 단일 화면에서 대조 분석하고, 그래프 분할(Max-Cut) 및 외판원 순회(TSP) 등 현실의 NP-난해 최적화 문제를 해결하는 양자 알고리즘의 응용 흐름을 완결합니다.
+\end{enumerate}
+\end{notebox}
+
+% =============================================================================
+\section{왜 GUI 양자 플랫폼인가? 프로그래밍 장벽을 넘어 도메인 실무로}
+% =============================================================================
+양자컴퓨팅의 최종 목적은 물리 실험 자체에 머무는 것이 아니라, 신약 개발 분자 구조 계산, 금융 포트폴리오 리스크 최적화, 물류 공급망 최적화 등 현실 세계의 난치성 문제를 해결하는 데 있습니다.
+
+그러나 도메인 전문가들이 SDK(Qiskit 등)를 직접 사용할 경우:
+\begin{itemize}
+    \item 파이썬 버전 충돌, C++ 컴파일러 의존성, 가상환경 에러
+    \item 복잡한 회로 코딩 및 엔디언(Endianness) 인덱싱 혼란
+    \item 다중 실험 결과(100샷 vs 1,000샷, 노이즈 유무)의 시각적 비교 곤란
+\end{itemize}
+등의 심각한 장벽을 겪게 됩니다. QubitSquare는 설치가 필요 없는 웹 브라우저 환경에서 드래그 앤 드롭 인터페이스와 원클릭 클라우드 분석 환경을 제공함으로써 이러한 장벽을 근본적으로 해소합니다.
+
+% =============================================================================
+\section{플랫폼 아키텍처와 계층 구조}
+% =============================================================================
+QubitSquare 플랫폼은 단일 회로 생성을 넘어 산업 프로젝트의 전체 생애주기를 관리하는 6단계 데이터 계층으로 구성됩니다:
+
+\begin{enumerate}
+    \item \textbf{Lab (실험실)}: 최상위 프로젝트 컨테이너. 문제 정의 및 관련 실험들의 집합체.
+    \item \textbf{Design (회로 설계)}: 드래그 앤 드롭으로 양자 게이트를 와이어에 배치하는 시각적 캔버스.
+    \item \textbf{Run (실행 요청)}: 선택한 백엔드 엔진(QPlayer Compute Engine)과 샷 수(Shots)를 설정하여 작업 큐에 제출하는 단위.
+    \item \textbf{Result (실행 결과)}: 서버에서 시뮬레이션된 측정 빈도(Counts), 확률 분포(Distribution), 샷 요약 스냅샷.
+    \item \textbf{Compare (비교 분석)}: 2개 이상(최대 8개)의 Result를 단일 차트 및 교차 테이블에서 1:1로 대조하는 핵심 기능.
+    \item \textbf{Insight (산업적 통찰)}: 수치적 비교 결과를 비즈니스 의사결정 보고서로 환원.
+\end{enumerate}
+
+% =============================================================================
+\section{Design Workspace의 5대 구성 요소와 3대 편집 규칙}
+% =============================================================================
+\begin{itemize}
+    \item \textbf{Top Action Bar}: Lab 이동, 실행(Run), Compare 전환 등 프로젝트 네비게이션.
+    \item \textbf{Palette}: 1큐비트 게이트($H, X, Y, Z, S, T$), 2큐비트 게이트($CNOT, CZ, SWAP$), 측정(Measure) 블록 보관소.
+    \item \textbf{Canvas (회로 캔버스)}: 큐비트 와이어와 타임슬라이스 그리드.
+    \item \textbf{Inspector}: 선택된 게이트의 각도 매개변수($\theta, \phi$) 및 세부 속성 실시간 편집기.
+    \item \textbf{Bottom Timeline}: 회로의 시간 축 깊이(Depth)와 게이트 순서 탐색기.
+\end{itemize}
+
+\begin{notebox}{QubitSquare의 3대 핵심 편집 규칙}
+\begin{enumerate}
+    \item \textbf{자동 전체 측정(Auto Full Measurement)}: 캔버스에 Measure 게이트를 하나도 배치하지 않고 Run을 실행하면, 시스템이 모든 큐비트의 종단에 Measure 게이트를 자동으로 삽입하여 전체 상태를 측정합니다. 특정 큐비트에만 Measure를 배치하면 지정된 큐비트만 측정됩니다.
+    \item \textbf{실험 분기를 위한 Duplicate 규칙}: 이미 Run이 실행되어 Result가 생성된 Design은 실행 이력 보존을 위해 잠금(Lock) 처리됩니다. 새로운 게이트를 추가하거나 구조를 변경하려면 반드시 \textbf{Duplicate(복제)}를 클릭하여 새로운 Design 버전을 분기해야 합니다.
+    \item \textbf{와이어 기반 엔디언 해석}: QubitSquare의 출력 bitstring은 캔버스 최상단 와이어가 맨 왼쪽 비트($q_0$), 아래쪽 와이어가 오른쪽 비트 순으로 1:1 직관 배치됩니다.
+\end{enumerate}
+\end{notebox}
+
+% =============================================================================
+\section{12시간 부트캠프 종합 완성: 4일간의 여정}
+% =============================================================================
+4주(총 12시간)의 여정을 통해 우리는 양자컴퓨팅의 핵심 3대 기둥을 모두 완성했습니다:
+\begin{itemize}
+    \item \textbf{Day 1 (NumPy 기초)}: Dirac 표기법, 2차원 복소 상태벡터, Born 측정 규칙, 유니터리 가역성($H^2=I$).
+    \item \textbf{Day 2 (NumPy 얽힘)}: 텐서곱($\mathbb{C}^4$), 비분리 얽힘 판별식, CNOT 게이트와 4대 Bell 기저, No-Signaling 정리.
+    \item \textbf{Day 3 (Qiskit 알고리즘)}: Grover 탐색의 2단계 연산자(Oracle \& Diffusion), $O(\sqrt{N})$ 양자 가속 수식 증명.
+    \item \textbf{Day 4 (QubitSquare 실무)}: 노코드 플랫폼을 통한 산업 도메인 문제 회로 조립, 클라우드 연동 및 Compare 분석.
+\end{itemize}
+
+\end{document}
