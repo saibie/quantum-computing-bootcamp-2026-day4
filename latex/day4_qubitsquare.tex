@@ -31,7 +31,9 @@
     \begin{qcblock}{왜 우리는 GUI 플랫폼을 필요로 하는가?}
         \begin{itemize}
             \item \textbf{이론을 아는 것}과 \textbf{전문 소프트웨어 엔지니어가 되는 것}은 완전히 다른 문제입니다.
+            \pause
             \item 서킷 하나 돌리려고 복잡한 프로그래밍 언어의 늪(Python 문법, SDK 버전 충돌, 가상환경)에 빠져 지칠 필요가 없습니다.
+            \pause
             \item \textbf{QubitSquare}: 비프로그래머 연구자도 마우스 클릭만으로 양자 회로를 조립하고 즉시 실행할 수 있는 차세대 플랫폼입니다.
         \end{itemize}
     \end{qcblock}
@@ -43,8 +45,10 @@
         \begin{enumerate}
             \item \textbf{설치 없는 100\% 웹 브라우저 (Zero-Installation)}:
             파이썬, C++ 컴파일러, 패키지 설치 없이 크롬/엣지 브라우저만 열면 즉시 양자 회로를 설계합니다.
+            \pause
             \item \textbf{직관적인 마우스 드래그 앤 드롭 (Visual Circuit Design)}:
             수식과 교재에서 보던 게이트 기호($H, X, CX, CZ$)를 와이어 위에 그대로 끌어다 놓습니다.
+            \pause
             \item \textbf{올인원 파이프라인 (Design $\to$ Server Run $\to$ Compare)}:
             회로 생성부터 목적함수 설정, 서버 백엔드 실행, \textbf{결과 비교 분석(Compare)}까지 한 화면에서 완결합니다.
         \end{enumerate}
@@ -76,7 +80,9 @@
     \begin{qcblock}{실습 중심(Hands-on Driven) 운영 원칙}
         \begin{itemize}
             \item \textbf{일방적 슬라이드 강의 지양}: 강사의 화면 시연과 학생의 실시간 브라우저 조작이 1:1로 함께 진행됩니다.
+            \pause
             \item \textbf{100\% 서버 기반 워크플로우}: 실제 클라우드 인프라(QPlayer Compute Engine)로 회로를 전송하고 결과를 수신합니다.
+            \pause
             \item \textbf{수치적 비교 검증}: 100샷 vs 1,000샷의 통계 수렴(Shot Noise 감소)을 Compare 뷰에서 직접 체감합니다.
         \end{itemize}
     \end{qcblock}
@@ -87,7 +93,9 @@
     \begin{qcblock}{QubitSquare 플랫폼 개요}
         \begin{itemize}
             \item 웹 표준 기술 기반의 그래픽 양자 회로 설계 및 알고리즘 분석 플랫폼
+            \pause
             \item 별도 소프트웨어 설치 없이 크롬/엣지 등 최신 웹 브라우저에서 바로 구동
+            \pause
             \item 초심자 친화적 직관적 UI와 산업 최적화(QAOA, Max-Cut, TSP) 템플릿 내장
         \end{itemize}
     \end{qcblock}
@@ -95,7 +103,9 @@
     \begin{qctip}{[실습 준비] 웹 브라우저 접속 및 로그인}
         \begin{enumerate}
             \item 웹 브라우저를 열고 QubitSquare 서비스 URL에 접속합니다.
+            \pause
             \item 배정받은 실습 계정으로 로그인합니다.
+            \pause
             \item 첫 화면(Dashboard / Labs)에 정상적으로 진입했는지 확인합니다.
         \end{enumerate}
     \end{qctip}
@@ -125,6 +135,7 @@
     \begin{qctip}{서버 기반 실행(Server-based Execution)의 장점}
         \begin{itemize}
             \item 개인 PC의 사양(CPU/RAM)에 구애받지 않고 고성능 클라우드 자원을 활용합니다.
+            \pause
             \item 모든 실행 기록과 결과가 서버 DB에 영구 보존되어 언제든 재열람 및 다중 비교가 가능합니다.
         \end{itemize}
     \end{qctip}
@@ -181,9 +192,13 @@
     \begin{qcblock}{5대 핵심 Puzzle Pieces}
         \begin{enumerate}
             \item \textbf{Circuit}: 기본 양자 회로를 편집하고 와이어를 배치하는 조각
+            \pause
             \item \textbf{Problem Source}: 그래프 가중치(Max-Cut) 또는 거리 행렬(TSP) 기반 산업 문제 소스
+            \pause
             \item \textbf{Score}: 측정 결과로부터 최적화 목적함수 값을 계산하는 조각
+            \pause
             \item \textbf{Optimizer Loop}: 파라미터 변분 양자 알고리즘(VQE, QAOA)을 위한 고전 최적화 루프
+            \pause
             \item \textbf{Display}: 측정 bitstring 분포 및 산업 응용 맞춤 시각화 조각
         \end{enumerate}
     \end{qcblock}
@@ -219,7 +234,9 @@
     \begin{qctip}{[마우스 조립 순서]}
         \begin{enumerate}
             \item 좌측 게이트 팔레트에서 \textbf{$H$ 게이트}를 마우스로 끌어 $q_0$ 와이어 첫 번째 칸에 놓습니다.
+            \pause
             \item \textbf{$CX$ (CNOT) 게이트}를 끌어 $q_0$ 와이어에 놓은 뒤, 타깃 연결선을 $q_1$ 와이어로 드래그합니다.
+            \pause
             \item 회로가 위 그림과 일치하는지 확인합니다.
         \end{enumerate}
     \end{qctip}
@@ -230,6 +247,7 @@
     \begin{qcalert}{{가장 흔히 하는 실수: 'Apply to Flow'는 실행 버튼이 아닙니다!}}
         \begin{itemize}
             \item 회로 에디터 우측 상단의 \textbf{‘Apply to Flow’} 버튼은 편집한 회로를 Design 조립판에 반영하고 돌아가는 \textbf{UI 복귀/임시저장 버튼}입니다.
+            \pause
             \item 이 버튼을 누른다고 해서 서버로 연산 요청이 전송되거나 시뮬레이션이 실행되는 것이 아닙니다!
         \end{itemize}
     \end{qcalert}
@@ -237,7 +255,9 @@
     \begin{qcblock}{실제 실행(Run)을 요청하는 표준 절차}
         \begin{enumerate}
             \item 회로 편집 후 \textbf{‘Apply to Flow’}를 눌러 Design Workspace로 복귀합니다.
+            \pause
             \item 상단 탭에서 \textbf{`Executions`} 메뉴를 클릭합니다.
+            \pause
             \item 연산 엔진과 shots를 지정한 뒤 우측의 \textbf{`Run`} 버튼을 눌러야 서버로 제출됩니다!
         \end{enumerate}
     \end{qcblock}
@@ -248,6 +268,7 @@
     \begin{qcblock}{자동 전체 측정(Automatic Measurement) 삽입 메커니즘}
         \begin{itemize}
             \item 회로에 Measure 게이트가 \textbf{단 하나도 없으면}, QubitSquare 서버 백엔드는 실행 시 \textbf{모든 큐비트에 대한 측정을 자동으로 맨 뒤에 삽입}합니다.
+            \pause
             \item 명시적 Measure가 1개라도 있으면 사용자가 지정한 큐비트만 측정됩니다.
         \end{itemize}
     \end{qcblock}
@@ -263,8 +284,11 @@
     \begin{qcblock}{서버 실행 파라미터 설정}
         \begin{enumerate}
             \item 상단 네비게이션에서 \textbf{`Executions`} 탭을 클릭합니다.
+            \pause
             \item \textbf{Quantum Compute Engine Target}: 실습용 서버 시뮬레이터 엔진을 선택합니다.
+            \pause
             \item \textbf{Shots (측정 반복 횟수)}: \textbf{100}으로 설정합니다.
+            \pause
             \item 우측 상단의 초록색 \textbf{`Run`} 버튼을 클릭합니다!
         \end{enumerate}
     \end{qcblock}
@@ -272,6 +296,7 @@
     \begin{qctip}{작업 큐(Queue) 상태 확인}
         \begin{itemize}
             \item 버튼을 누르면 상태가 \textbf{Pending (대기 중)} $\to$ \textbf{Running (실행 중)} $\to$ \textbf{Completed (완료)}로 전환됩니다.
+            \pause
             \item 서버 상에 독립된 새로운 \textbf{Run ID}가 발급되며, 완료 즉시 우측에 \textbf{`View Result`} 버튼이 활성화됩니다.
         \end{itemize}
     \end{qctip}
@@ -299,6 +324,7 @@
     \begin{qcblock}{불변 스냅샷(Immutable Snapshot)의 가치}
         \begin{itemize}
             \item QubitSquare의 Result는 실행 완료 시점의 \textbf{회로 형상과 측정 카운트 데이터를 영구 스냅샷}으로 저장합니다.
+            \pause
             \item 이후 사용자가 Design 화면에서 회로를 마음대로 수정하더라도, 이전에 완료된 Result 스냅샷은 절대 훼손되지 않습니다!
         \end{itemize}
     \end{qcblock}
@@ -313,7 +339,9 @@
             \begin{qcblock}{Default Display (관측 빈도 순)}
                 \begin{itemize}
                     \item 실제로 \textbf{1회 이상 관측된 bitstring만} 막대그래프 축에 표시
+                    \pause
                     \item 관측 횟수가 높은 순으로 내림차순 정렬
+                    \pause
                     \item 최적 해답(Grover 타깃 등) 식별에 최적
                 \end{itemize}
             \end{qcblock}
@@ -322,7 +350,9 @@
             \begin{qcblock}{Raw Distribution (기저 순 4차원)}
                 \begin{itemize}
                     \item 이진수 크기 순($00, 01, 10, 11$) 고정 정렬
+                    \pause
                     \item \textbf{0회 관측된 기저 상태까지 축에 모두 표시}
+                    \pause
                     \item 1~2일차 이론 상태벡터와 1:1 대조에 필수!
                 \end{itemize}
             \end{qcblock}
@@ -339,8 +369,11 @@
     \begin{qcblock}{1부 실습 달성도 체크}
         \begin{itemize}
             \item $\checkmark$ QubitSquare 웹 플랫폼 접속 및 서버 계정 로그인 완료
+            \pause
             \item $\checkmark$ 2-qubit Bell 회로 마우스 드래그 앤 드롭 조립
+            \pause
             \item $\checkmark$ 'Apply to Flow' $\neq$ Run 규칙 및 자동 전체 측정 메커니즘 체득
+            \pause
             \item $\checkmark$ QPlayer 서버로 100 shots Run 제출 및 Result 스냅샷 생성 확인
         \end{itemize}
     \end{qcblock}
@@ -348,6 +381,7 @@
     \begin{qctip}{20분간 중간 휴식 및 개별 점검}
         \begin{itemize}
             \item 두뇌 휴식을 취하며, 서버 접속 오류나 실행 지연이 있는 분은 강사에게 질문해 주세요.
+            \pause
             \item 2부에서는 \textbf{Grover 회로 조립, 1,000 shots 실행, 그리고 대망의 Compare 다중 비교}가 이어집니다!
         \end{itemize}
     \end{qctip}
@@ -358,9 +392,13 @@
     \begin{qcblock}{2부 실습 미션 (75분)}
         \begin{enumerate}
             \item \textbf{Duplicate 기능 활용}: 기존 Bell Design을 복제하여 안전하게 새 실험 분기 생성
+            \pause
             \item \textbf{2-qubit Grover 회로 조립}: Phase Oracle과 Diffusion 연산자를 마우스로 조립
+            \pause
             \item \textbf{1,000 shots 서버 제출}: 샷 수를 10배 늘려 정밀 실행
+            \pause
             \item \textbf{Compare 탭 다중 분석 (핵심)}: 100 shots vs 1,000 shots를 나란히 비교하여 \textbf{Shot Noise 통계 수렴}을 실증적으로 확인
+            \pause
             \item \textbf{산업 템플릿 탐색}: Max-Cut 및 TSP 템플릿 로드 및 회로 변환 구경
         \end{enumerate}
     \end{qcblock}
@@ -371,6 +409,7 @@
     \begin{qcalert}{{주의: 기존 Design의 회로를 그냥 덮어쓰지 마세요!}}
         \begin{itemize}
             \item 동일한 Design에서 회로를 지우고 새로 그리면, 이전 실험과의 맥락적 연결이 복잡해질 수 있습니다.
+            \pause
             \item 새로운 알고리즘(Grover)이나 다른 파라미터를 테스트할 때는 상단의 \textbf{`Duplicate`} 버튼을 사용하는 것이 표준입니다.
         \end{itemize}
     \end{qcalert}
@@ -378,6 +417,7 @@
     \begin{qcblock}{Duplicate 복제의 이점}
         \begin{itemize}
             \item 현재 Design의 모든 설정(회로, 목적함수, Display)이 완전히 독립된 새 Design으로 복제됩니다.
+            \pause
             \item 원본 Bell Design은 그대로 보존되므로, 나중에 \textbf{Compare 탭에서 Bell 결과와 Grover 결과를 동시에 불러와 비교}할 수 있습니다!
         \end{itemize}
     \end{qcblock}
@@ -388,7 +428,9 @@
     \begin{qcblock}{[핸즈온 단계]}
         \begin{enumerate}
             \item 상단 `Design` 화면에서 \textbf{`Duplicate`}를 클릭하여 새 Design을 생성하고 이름을 `Grover-2Q`로 변경합니다.
+            \pause
             \item Circuit 조각의 \textbf{‘Edit Circuit’}을 누르고 기존 게이트를 삭제합니다.
+            \pause
             \item 3일차에 배운 2-qubit Grover 회로(타깃 $|11\rangle$)를 마우스로 조립합니다:
         \end{enumerate}
     \end{qcblock}
@@ -436,8 +478,11 @@
     \begin{qcblock}{서버 정밀 실행 요청}
         \begin{enumerate}
             \item 상단 \textbf{`Executions`} 탭으로 이동합니다.
+            \pause
             \item 방금 생성한 \textbf{`Grover-2Q`} Design이 선택되어 있는지 확인합니다.
+            \pause
             \item 이번에는 통계적 정밀도를 높이기 위해 Shots를 \textbf{1,000}으로 상향 설정합니다!
+            \pause
             \item 초록색 \textbf{`Run`} 버튼을 클릭하여 서버로 2차 연산을 제출합니다.
         \end{enumerate}
     \end{qcblock}
@@ -445,6 +490,7 @@
     \begin{qctip}{Result 확인}
         \begin{itemize}
             \item 상태가 Completed로 바뀌면 \textbf{`View Result`}를 클릭합니다.
+            \pause
             \item 단 1회의 Grover 반복만으로 타깃 기저인 \textbf{`11`이 1,000회 중 1,000회(100\%) 검출}되는 기적적인 양자 간섭 결과를 직접 확인합니다!
         \end{itemize}
     \end{qctip}
@@ -455,6 +501,7 @@
     \begin{qcblock}{복소 상태벡터 vs 샷 관측 카운트(Counts)}
         \begin{itemize}
             \item Day 1~2의 상태벡터 $\ket{\psi}$는 측정 전 닫힌계의 복소 진폭이었습니다.
+            \pause
             \item QubitSquare Result는 물리적 측정 후의 \textbf{고전 관측 빈도(Counts)}입니다. 플랫폼은 측정 확률에 비례하여 난수 샘플링된 실제 실험 데이터를 제공합니다.
         \end{itemize}
     \end{qcblock}
@@ -462,6 +509,7 @@
     \begin{qctip}{비트 순서(Endianness) 주의점}
         \begin{itemize}
             \item \textbf{Qiskit Little-Endian}: $|q_1 q_0\rangle$ (맨 오른쪽이 $q_0$)
+            \pause
             \item \textbf{QubitSquare}: 화면 상단부터 $q_0, q_1$ 순으로 배치되므로, 출력 bitstring의 각 자리수가 어떤 큐비트의 측정값인지 대조할 때 인덱스 순서를 명확히 숙지합니다.
         \end{itemize}
     \end{qctip}
@@ -474,12 +522,16 @@
     \begin{qcblock}{Compare 뷰 생성 방법}
         \begin{enumerate}
             \item 상단 메뉴의 \textbf{`Compare`} 탭으로 이동하거나, Puzzle Pieces에서 Compare 조각을 엽니다.
+            \pause
             \item 결과 목록에서 앞서 실행 완료된 결과들을 체크합니다:
             \begin{itemize}
                 \item Result 1: Bell 상태 (100 shots)
+                \pause
                 \item Result 2: Bell 상태 (추가 1,000 shots 실행본이 있는 경우)
+                \pause
                 \item Result 3: Grover-2Q 상태 (1,000 shots)
             \end{itemize}
+            \pause
             \item \textbf{‘Generate Comparison’}을 클릭하면 한 화면에 다중 히스토그램이 나란히 렌더링됩니다!
         \end{enumerate}
     \end{qcblock}
@@ -491,6 +543,7 @@
         \begin{itemize}
             \item \textbf{Bell (100 shots)}:
             이론적 확률은 50:50이지만, 실제 측정값은 47:53, 44:56 등 통계적 요동(Fluctuation)이 발생합니다.
+            \pause
             \item \textbf{Bell (1,000 shots)}:
             표본 수가 10배 늘어남에 따라 49.8:50.2 등 이론적 50\%에 훨씬 가깝게 수렴합니다.
         \end{itemize}
@@ -507,6 +560,7 @@
         \begin{itemize}
             \item \textbf{Bell 상태 히스토그램}:
             두 개의 명확한 기저($00$과 $11$)가 정확히 절반씩 양분되는 \textbf{완전 얽힘(Entanglement)}의 특성을 보입니다.
+            \pause
             \item \textbf{Grover 상태 히스토그램}:
             오직 단 하나의 정답 기저($11$)에 100\% 확률이 압도적으로 집중되는 \textbf{상쇄 간섭 기반 양자 증폭(Quantum Amplification)}의 정수를 보여줍니다.
         \end{itemize}
@@ -524,7 +578,9 @@
     \begin{qcblock}{Conflict-Aware Network Segmentation (Max-Cut)}
         \begin{itemize}
             \item 네트워크 서버 노드 간의 통신 충돌 가중치를 그래프 GUI에서 마우스로 직접 편집합니다.
+            \pause
             \item 내부적으로 QAOA(양자 근사 최적화) 서킷 및 Score 조각이 자동 연결됩니다.
+            \pause
             \item 실행 후 Result에서 네트워크가 두 그룹(빨강/파랑)으로 최적 분할된 시각화 결과를 열람합니다.
         \end{itemize}
     \end{qcblock}
@@ -539,6 +595,7 @@
     \begin{qcblock}{Shortest Cycle Route Optimization (TSP - 외판원 순회)}
         \begin{itemize}
             \item 여러 도시 간의 거리 행렬(Distance Matrix) 표를 화면에서 편집합니다.
+            \pause
             \item 최적 순회 경로가 TSP Route Display 지도 위에 시각적으로 렌더링됩니다.
         \end{itemize}
     \end{qcblock}
@@ -546,6 +603,7 @@
     \begin{qcalert}{{'Convert to gates' 기능 사용 시 주의사항}}
         \begin{itemize}
             \item 템플릿 우측의 \textbf{'Convert to gates'}를 누르면 블랙박스 템플릿이 수십 개의 개별 게이트 회로로 분해되어 와이어에 전개됩니다.
+            \pause
             \item \textbf{비가역적(Irreversible) 작업}: 한 번 게이트로 분해하고 나면 템플릿의 자동 수식 동기화가 해제되므로 주의해야 합니다!
         \end{itemize}
     \end{qcalert}
